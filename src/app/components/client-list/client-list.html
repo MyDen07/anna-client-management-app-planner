@@ -1,0 +1,55 @@
+<div class="card">
+  <h2>Create Client</h2>
+  <div class="row">
+    <div>
+      <label>Name*</label>
+      <input [(ngModel)]="form.name" placeholder="Anna Smith" />
+    </div>
+    <div>
+      <label>Email*</label>
+      <input [(ngModel)]="form.email" placeholder="anna@email.com" />
+    </div>
+    <div>
+      <label>Phone</label>
+      <input [(ngModel)]="form.phone" placeholder="+971..." />
+    </div>
+    <div>
+      <label>Company</label>
+      <input [(ngModel)]="form.company" placeholder="Anna Architects" />
+    </div>
+  </div>
+
+  <div style="margin-top:8px;">
+    <label>Notes</label>
+    <input [(ngModel)]="form.notes" placeholder="VIP client, prefers mornings" />
+  </div>
+
+  <div style="margin-top:12px;">
+    <button class="primary" (click)="addClient()">Save Client</button>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Clients</h2>
+  <table class="table" *ngIf="clients.length; else empty">
+    <thead>
+      <tr>
+        <th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Company</th><th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of clients">
+        <td>{{ c.id }}</td>
+        <td>{{ c.name }}</td>
+        <td>{{ c.email }}</td>
+        <td>{{ c.phone }}</td>
+        <td>{{ c.company }}</td>
+        <td><button (click)="remove(c.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #empty>
+    <div class="badge">No clients yet.</div>
+  </ng-template>
+</div>

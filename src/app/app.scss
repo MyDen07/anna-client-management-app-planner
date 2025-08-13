@@ -1,0 +1,15 @@
+* { box-sizing: border-box; }
+:host { display:block; }
+body { margin:0; font-family: Arial, Helvetica, sans-serif; }
+.topnav { display:flex; gap:12px; background:#f6f6f6; padding:12px; border-bottom:1px solid #ddd; }
+.topnav a { padding:8px 12px; text-decoration:none; color:#333; border-radius:6px; }
+.topnav a.active, .topnav a:hover { background:#eaeaea; }
+.container { max-width:960px; margin:24px auto; padding:0 16px; }
+.card { border:1px solid #ddd; border-radius:10px; padding:16px; margin-bottom:16px; background:#fff; }
+.row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+button { cursor:pointer; padding:8px 12px; border-radius:6px; border:1px solid #888; background:#f8f8f8; }
+button.primary { background:#e3f2fd; border-color:#90caf9; }
+input, select { width:100%; padding:8px; border:1px solid #bbb; border-radius:6px; }
+.table { width:100%; border-collapse:collapse; margin-top:12px; }
+.table th, .table td { border:1px solid #ddd; padding:8px; text-align:left; }
+.badge { display:inline-block; padding:2px 8px; border-radius:12px; background:#eee; font-size:12px; }
