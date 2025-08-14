@@ -1,6 +1,7 @@
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Component } from '@angular/core';
+
 import { ClientService } from '../../services/client';
 import { MeetingService } from '../../services/meeting';
 import { Client } from '../../models/client';
@@ -16,6 +17,8 @@ import { Meeting } from '../../models/meeting';
 export class MeetingScheduler {
   clients: Client[] = [];
   meetings: Meeting[] = [];
+
+  // Keep the model key as "title" (the UI label can say "Designation")
   form = {
     clientId: '',
     title: '',
@@ -37,20 +40,31 @@ export class MeetingScheduler {
 
   createMeeting() {
     if (!this.form.clientId || !this.form.title || !this.form.date || !this.form.time) {
-      alert('Client, Title, Date and Time are required');
+      alert('Client, Designation, Date, and Time are required');
       return;
     }
+
     const clientIdNum = Number(this.form.clientId);
+
     this.meetingSvc.add({
       clientId: clientIdNum,
-      title: this.form.title.trim(),
+      title: this.form.title.trim(),       // shown as “Designation” in the UI
       date: this.form.date,
       time: this.form.time,
       mode: this.form.mode as any,
       location: this.form.mode === 'In-Person' ? this.form.location.trim() : '',
       meetingLink: this.form.mode === 'Online' ? this.form.meetingLink.trim() : ''
     });
-    this.form = { clientId: '', title: '', date: '', time: '', mode: 'In-Person', location: '', meetingLink: '' };
+
+    this.form = {
+      clientId: '',
+      title: '',
+      date: '',
+      time: '',
+      mode: 'In-Person',
+      location: '',
+      meetingLink: ''
+    };
     this.refresh();
   }
 
@@ -59,5 +73,11 @@ export class MeetingScheduler {
       this.meetingSvc.cancel(id);
       this.refresh();
     }
+  }
+
+  // Show Client Name (not ID) in the table
+  clientName(id: number): string {
+    const c = this.clients.find(x => x.id === id);
+    return c ? c.name : 'Unknown';
   }
 }

@@ -1,55 +1,70 @@
-<div class="card">
-  <h2>Create Client</h2>
-  <div class="row">
-    <div>
-      <label>Name*</label>
-      <input [(ngModel)]="form.name" placeholder="Anna Smith" />
-    </div>
-    <div>
-      <label>Email*</label>
-      <input [(ngModel)]="form.email" placeholder="anna@email.com" />
-    </div>
-    <div>
-      <label>Phone</label>
-      <input [(ngModel)]="form.phone" placeholder="+971..." />
-    </div>
-    <div>
-      <label>Company</label>
-      <input [(ngModel)]="form.company" placeholder="Anna Architects" />
-    </div>
-  </div>
+<div class="client-list-container">
+  <h2>Create a New Client</h2>
 
-  <div style="margin-top:8px;">
-    <label>Notes</label>
-    <input [(ngModel)]="form.notes" placeholder="VIP client, prefers mornings" />
+  <!-- Client creation form -->
+  <form (ngSubmit)="addClient()" class="client-form">
+    <div class="form-row">
+  <div class="form-group">
+    <label>Name</label>
+    <input [(ngModel)]="form.name" name="name" />
   </div>
-
-  <div style="margin-top:12px;">
-    <button class="primary" (click)="addClient()">Save Client</button>
+  <div class="form-group">
+    <label>Email</label>
+    <input [(ngModel)]="form.email" name="email" />
   </div>
 </div>
 
-<div class="card">
-  <h2>Clients</h2>
-  <table class="table" *ngIf="clients.length; else empty">
+<div class="form-row">
+  <div class="form-group">
+    <label>Phone</label>
+    <input [(ngModel)]="form.phone" name="phone" />
+  </div>
+  <div class="form-group">
+    <label>Company</label>
+    <input [(ngModel)]="form.company" name="company" />
+  </div>
+</div>
+
+    <div class="form-row">
+      <input [(ngModel)]="form.address" name="address" placeholder="Address" />
+    </div>
+
+    <div class="form-row">
+      <textarea [(ngModel)]="form.comments" name="comments" placeholder="Comments"></textarea>
+    </div>
+
+    <button type="submit">Add Client</button>
+  </form>
+
+  <!-- Client list table -->
+  <h3>Clients List</h3>
+  <table class="client-table" *ngIf="clients.length > 0; else noClients">
     <thead>
       <tr>
-        <th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Company</th><th></th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Company</th>
+        <th>Address</th>
+        <th>Comments</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let c of clients">
-        <td>{{ c.id }}</td>
-        <td>{{ c.name }}</td>
-        <td>{{ c.email }}</td>
-        <td>{{ c.phone }}</td>
-        <td>{{ c.company }}</td>
-        <td><button (click)="remove(c.id)">Delete</button></td>
+      <tr *ngFor="let client of clients">
+        <td>{{ client.name }}</td>
+        <td>{{ client.email }}</td>
+        <td>{{ client.phone }}</td>
+        <td>{{ client.company }}</td>
+        <td>{{ client.address }}</td>
+        <td>{{ client.comments }}</td>
+        <td>
+ <button (click)="remove(client.id)">Delete</button>
+</td>
       </tr>
     </tbody>
   </table>
 
-  <ng-template #empty>
-    <div class="badge">No clients yet.</div>
+  <ng-template #noClients>
+    <p>No clients added yet.</p>
   </ng-template>
 </div>

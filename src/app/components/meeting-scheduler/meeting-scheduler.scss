@@ -1,0 +1,178 @@
+/* Form container */
+.form-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #004aad;
+  margin-bottom: 15px;
+}
+
+/* Form layout */
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+input, textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+/* Buttons */
+button {
+  background-color: #004aad;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: #003580;
+}
+
+/* Cancel button */
+button.danger {
+  background-color: #dc3545;
+}
+
+button.danger:hover {
+  background-color: #bb2d3b;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+thead {
+  background-color: #004aad;
+  color: white;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+  background-color: #f2f2f2;
+}
+/* ---------- Aligned two-column form grid ---------- */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 16px; /* row gap / column gap */
+}
+
+.form-grid .full-width {
+  grid-column: 1 / -1; /* submit row spans both columns */
+}
+
+/* Consistent groups */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  color: #4a5568;
+  margin-bottom: 6px;
+}
+
+/* Inputs, selects, and textareas look the same */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cfd8e3;
+  border-radius: 10px;
+  background: #fff;
+  outline: none;
+  font: inherit;
+  line-height: 1.2;
+  transition: box-shadow 120ms ease, border-color 120ms ease;
+  min-height: 42px; /* uniform height for inputs/selects */
+}
+
+.form-group textarea {
+  min-height: 96px; /* taller for notes if used later */
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #84b5ff;
+  box-shadow: 0 0 0 3px rgba(0, 106, 255, 0.15);
+}
+
+/* Make the submit button span full width row nicely */
+button.primary {
+  width: fit-content;
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 760px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-grid .full-width {
+    grid-column: auto;
+  }
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  height: 40px;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+/* Uniform height for inputs/selects in the first row */
+.form-group select,
+.form-group input {
+  height: 44px;          /* same height */
+  padding: 10px 12px;    /* consistent padding */
+  box-sizing: border-box;
+}
+
+/* Make selects look consistent across browsers */
+.form-group select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-clip: padding-box;
+}

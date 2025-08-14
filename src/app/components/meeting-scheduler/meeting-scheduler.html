@@ -1,69 +1,91 @@
+<!-- Form Card -->
 <div class="card">
-  <h2>Schedule Meeting</h2>
-  <div class="row">
-    <div>
+  <h2>Schedule a New Meeting</h2>
+
+  <form (ngSubmit)="createMeeting()" class="form-grid">
+    <!-- Row 1: Client + Designation (stored as 'title') -->
+    <div class="form-group">
       <label>Client*</label>
-      <select [(ngModel)]="form.clientId">
+      <select [(ngModel)]="form.clientId" name="clientId" required>
         <option value="">-- Select Client --</option>
         <option *ngFor="let c of clients" [value]="c.id">{{ c.name }}</option>
       </select>
     </div>
-    <div>
-      <label>Title*</label>
-      <input [(ngModel)]="form.title" placeholder="Design review" />
+
+    <div class="form-group">
+      <label>Designation*</label>
+      <input [(ngModel)]="form.title" name="title" placeholder="Project Manager" required />
     </div>
-    <div>
+
+    <!-- Row 2: Date + Time -->
+    <div class="form-group">
       <label>Date*</label>
-      <input type="date" [(ngModel)]="form.date" />
+      <input type="date" [(ngModel)]="form.date" name="date" required />
     </div>
-    <div>
+
+    <div class="form-group">
       <label>Time*</label>
-      <input type="time" [(ngModel)]="form.time" />
+      <input type="time" [(ngModel)]="form.time" name="time" required />
     </div>
-    <div>
+
+    <!-- Row 3: Mode + conditional fields -->
+    <div class="form-group">
       <label>Mode</label>
-      <select [(ngModel)]="form.mode">
+      <select [(ngModel)]="form.mode" name="mode">
         <option>In-Person</option>
         <option>Online</option>
         <option>Phone</option>
       </select>
     </div>
-  </div>
 
-  <div class="row" style="margin-top:8px;">
-    <div *ngIf="form.mode === 'In-Person'">
+    <div class="form-group" *ngIf="form.mode === 'In-Person'">
       <label>Location</label>
-      <input [(ngModel)]="form.location" placeholder="Office, Site, Cafe" />
+      <input [(ngModel)]="form.location" name="location" placeholder="Office, Site, Cafe" />
     </div>
-    <div *ngIf="form.mode === 'Online'">
-      <label>Meeting Link</label>
-      <input [(ngModel)]="form.meetingLink" placeholder="https://..." />
-    </div>
-  </div>
 
-  <div style="margin-top:12px;">
-    <button class="primary" (click)="createMeeting()">Create Meeting</button>
-  </div>
+    <div class="form-group" *ngIf="form.mode === 'Online'">
+      <label>Meeting Link</label>
+      <input [(ngModel)]="form.meetingLink" name="meetingLink" placeholder="https://..." />
+    </div>
+
+    <!-- Submit (spans full width of the grid) -->
+    <div class="form-group full-width">
+      <button type="submit" class="primary">Create Meeting</button>
+    </div>
+  </form>
 </div>
 
+<!-- Meetings List Card -->
 <div class="card">
-  <h2>Meetings</h2>
+  <h2>Meetings List</h2>
+
   <table class="table" *ngIf="meetings.length; else empty">
     <thead>
       <tr>
-        <th>ID</th><th>Client ID</th><th>Title</th><th>Date</th><th>Time</th><th>Mode</th><th>Status</th><th></th>
+        <th>ID</th>
+        <th>Client</th>
+        <th>Designation</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Mode</th>
+        <th>Status</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let m of meetings">
         <td>{{ m.id }}</td>
-        <td>{{ m.clientId }}</td>
-        <td>{{ m.title }}</td>
+        <td>{{ clientName(m.clientId) }}</td>
+        <td>{{ m.title }}</td> <!-- stored as 'title', shown as Designation -->
         <td>{{ m.date }}</td>
         <td>{{ m.time }}</td>
         <td>{{ m.mode }}</td>
         <td><span class="badge">{{ m.status }}</span></td>
-        <td><button (click)="cancel(m.id)" [disabled]="m.status !== 'Scheduled'">Cancel</button></td>
+        <td>
+          <button class="danger" (click)="cancel(m.id)" [disabled]="m.status !== 'Scheduled'">
+            Cancel
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>

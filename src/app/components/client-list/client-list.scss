@@ -1,0 +1,219 @@
+/* Container */
+.client-list-container {
+  background: transparent;
+}
+
+/* Heading */
+h2, h3 {
+  margin: 0 0 14px 0;
+  color: #102a43;
+  font-weight: 600;
+}
+
+/* Form shell */
+.client-form {
+  background: #ffffff;
+  border: 1px solid #e6eaf0;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+
+/* Rows: two columns where possible */
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+/* If a row only has one control (like Address/Notes), it naturally spans full width */
+
+/* Inputs / Textarea */
+input, textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #cfd8e3;
+  border-radius: 10px;
+  background: #fff;
+  outline: none;
+  transition: box-shadow 120ms ease, border-color 120ms ease;
+  font: inherit;
+}
+
+textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+input:focus, textarea:focus {
+  border-color: #84b5ff;
+  box-shadow: 0 0 0 3px rgba(0, 106, 255, 0.15);
+}
+
+/* Submit button */
+button[type="submit"] {
+  cursor: pointer;
+  padding: 10px 16px;
+  border: 1px solid #93c5fd;
+  background: #e6f0ff;
+  color: #0a3ea0;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: transform 120ms ease, box-shadow 160ms ease, background 120ms ease;
+}
+
+button[type="submit"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  background: #dcebff;
+}
+
+/* Clients List heading */
+h3 {
+  margin-top: 22px;
+}
+
+/* Classy table */
+.client-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px; /* “card” rows */
+}
+
+.client-table thead th {
+  text-align: left;
+  font-size: 0.9rem;
+  color: #41566b;
+  padding: 10px 12px;
+  border-bottom: 1px solid #e6eaf0;
+}
+
+.client-table tbody tr {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.client-table tbody td {
+  padding: 12px 12px;
+  border-top: 1px solid #eef2f7;
+  border-bottom: 1px solid #eef2f7;
+  vertical-align: top;
+}
+
+.client-table tbody tr td:first-child {
+  border-left: 1px solid #eef2f7;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.client-table tbody tr td:last-child {
+  border-right: 1px solid #eef2f7;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Action buttons inside table (if you add them) */
+.client-table button {
+  border: 1px solid #fca5a5;
+  background: #fee2e2;
+  color: #b91c1c;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-weight: 600;
+}
+
+.client-table button:hover {
+  box-shadow: 0 4px 10px rgba(185, 28, 28, 0.15);
+}
+
+/* Responsive: stack inputs on small screens */
+@media (max-width: 700px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+.form-row {
+  display: flex;
+  gap: 20px; /* space between inputs */
+  margin-bottom: 15px;
+}
+
+.form-group {
+  flex: 1; /* each takes equal width */
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+/* ---- Clients List table (classy look) ---- */
+.client-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px; /* “card” rows */
+}
+
+/* Header */
+.client-table thead th {
+  text-align: left;
+  font-size: 0.92rem;
+  color: #3b556e;
+  padding: 10px 12px;
+  background: #f5f8fc;
+  border-bottom: 1px solid #e3e9f2;
+}
+
+/* Row “cards” */
+.client-table tbody tr {
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Cells */
+.client-table tbody td {
+  padding: 12px 12px;
+  border-top: 1px solid #eef2f7;
+  border-bottom: 1px solid #eef2f7;
+  vertical-align: top;
+  font-size: 0.95rem;
+  color: #273142;
+}
+
+/* Rounded corners per row */
+.client-table tbody tr td:first-child {
+  border-left: 1px solid #eef2f7;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+.client-table tbody tr td:last-child {
+  border-right: 1px solid #eef2f7;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+/* Subtle row hover */
+.client-table tbody tr:hover {
+  transform: translateY(-1px);
+  transition: transform 120ms ease;
+}
+
+/* Action button in the table */
+.client-table button {
+  border: none;
+  background: #dc2626; /* bright red */
+  color: #fff;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+.client-table button:hover {
+  background: #b91c1c;
+  transform: translateY(-1px);
+}

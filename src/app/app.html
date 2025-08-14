@@ -1,8 +1,20 @@
-<nav class="topnav">
-  <a routerLink="/clients" routerLinkActive="active">Clients</a>
-  <a routerLink="/meetings" routerLinkActive="active">Meetings</a>
-</nav>
+<div class="app-container">
+  <!-- Left side with logo -->
+  <div class="left-panel">
+    <img src="anna-logo.png" alt="Anna Architectural Firm Logo" class="logo" />
+    <h1>Anna Architectural Firm</h1>
+    <p>Project Management Scheduler</p>
+  </div>
 
-<main class="container">
-  <router-outlet></router-outlet>
-</main>
+  <!-- Right side with menu + page content -->
+  <div class="right-panel">
+    <nav class="topnav">
+      <a routerLink="/clients" routerLinkActive="active">Clients</a>
+      <a routerLink="/meetings" routerLinkActive="active">Meetings</a>
+    </nav>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
